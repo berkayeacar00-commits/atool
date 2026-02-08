@@ -464,18 +464,18 @@ def generate_reports(package_name):
             <tr><th>RISK</th><th>CATEGORY</th><th>DESCRIPTION</th><th>FILE</th><th>EXPLOIT POC</th></tr>
     """
     
-    FINDINGS.sort(key=lambda x: ("CRITICAL", "HIGH", "MEDIUM", "LOW").index(x["severity"]))
-    
+
+    FINDINGS.sort(key=lambda x: ("CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO").index(x.get("severity", "INFO")))
+
     for f in FINDINGS:
+        sev_class = f"bg-{f.get('severity', 'INFO').lower()}"
         html_content += f"""
-        <tr class="{f['severity']}">
-            <td>{f['severity']}</td>
-            <td>{f['name']}</td>
-            <td>{html.escape(f['desc'])}</td>
-            <td>{html.escape(f.get('file', 'N/A'))}</td>
-            <td><div class="cmd">{html.escape(f['exploit'])}</div></td>
-        </tr>
-        """
+        <tr>
+            <td><span class="severity-badge {sev_class}">{f.get('severity', 'INFO')}</span></td>
+            <td><strong>{html.escape(f['name'])}</strong></td>
+            <td>{html.escape(f['desc'])}<br><small style="color:#888">{html.escape(f.get('file', 'N/A'))}</small></td>
+            <td><div class="exploit-code">{html.escape(f['exploit'])}</div></td>
+        </tr>"""
     
     html_content += "</table><p style='text-align:center; color:#f00;'>The system belongs to us now.</p></body></html>"
     
