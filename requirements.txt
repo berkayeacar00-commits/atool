@@ -1,0 +1,25 @@
+# =============================================================================
+# ATOOL ANDROID SCANNER REQUIREMENTS v1.0
+# Yazar: berkayeacar00
+# =============================================================================
+
+# --- GÖRSEL & UX ---
+colorama==0.4.6          
+tqdm==4.66.1            
+
+# --- NETWORK & EXPLOITATION ---
+requests==2.31.0          
+urllib3==2.1.0           
+dnspython==2.4.2         
+
+# --- PARSING & ANALİZ ---
+lxml==5.1.0              
+beautifulsoup4==4.12.3   
+
+# --- CRYPTO & SECURITY ---
+cryptography==42.0.2    
+pyjwt==2.8.0            
+
+# --- OPSİYONEL / NEXT LEVEL ---
+# frida-tools            
+# androguard             
